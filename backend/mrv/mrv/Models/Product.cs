@@ -1,4 +1,6 @@
-﻿namespace mrv.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace mrv.Models
 {
     public class Product
     {

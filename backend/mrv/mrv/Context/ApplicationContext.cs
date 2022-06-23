@@ -6,12 +6,10 @@ namespace mrv.Context
     public class ApplicationContext : DbContext, IApplicationContext
     {
         public DbSet<Product> Products { get; set; }
-
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         { }
-
-        async Task<int> IApplicationContext.SaveChanges()
+        public async Task<int> SaveChanges()
         {
             return await base.SaveChangesAsync();
         }
