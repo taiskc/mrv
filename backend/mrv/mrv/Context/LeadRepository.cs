@@ -3,10 +3,10 @@ using mrv.Models;
 
 namespace mrv.Context
 {
-    public class ApplicationContext : DbContext, IApplicationContext
+    public class LeadRepository : DbContext, ILeadRepository
     {
-        public DbSet<Product> Products { get; set; }
-        public ApplicationContext(DbContextOptions<ApplicationContext> options)
+        public DbSet<Lead> Leads { get; set; }
+        public LeadRepository(DbContextOptions<LeadRepository> options)
             : base(options)
         { }
         public async Task<int> SaveChanges()

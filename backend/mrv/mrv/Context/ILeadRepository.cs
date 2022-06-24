@@ -3,10 +3,9 @@ using mrv.Models;
 
 namespace mrv.Context
 {
-    public interface IApplicationContext
+    public interface ILeadRepository
     {
-        DbSet<Product> Products { get; set; }
-
+        DbSet<Lead> Leads { get; set; }
         Task<int> SaveChanges();
     }
 }

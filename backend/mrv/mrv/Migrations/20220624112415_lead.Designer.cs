@@ -11,8 +11,8 @@ using mrv.Context;
 namespace mrv.Migrations
 {
     [DbContext(typeof(LeadRepository))]
-    [Migration("20220623142438_initial")]
-    partial class initial
+    [Migration("20220624112415_lead")]
+    partial class lead
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

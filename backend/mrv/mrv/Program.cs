@@ -13,14 +13,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<ApplicationContext>(options =>
+builder.Services.AddDbContext<LeadRepository>(options =>
                 options.UseSqlServer(
                     builder.Configuration.GetConnectionString("DefaultConnection"),
-                    b => b.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName)));
+                    b => b.MigrationsAssembly(typeof(LeadRepository).Assembly.FullName)));
 
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
-builder.Services.AddScoped<IApplicationContext, ApplicationContext>();
+builder.Services.AddScoped<ILeadRepository, LeadRepository>();
 
 builder.Services.AddSwaggerGen(c =>
 {
