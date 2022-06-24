@@ -24,7 +24,12 @@ namespace mrv.Features.Commands
 
                 if (lead == null)
                 {
-                    return default;
+                    throw new KeyNotFoundException("Lead not found!");
+                }
+
+                if (lead.Approved is true)
+                {
+                    throw new Exception("Lead already accepted!");
                 }
 
                 if (command.Approved)
