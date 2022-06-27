@@ -39,7 +39,7 @@ ATENÇÃO: O FrontEnd só aceita ou rejeita _leads_ existentes. Para criar suas 
   }
   ```
   
- Outras operações básicas não utilizadas pelo FrontEnd foram criadas para facilitar a manipulação dos dados, como documentado no Swagger.
+Outras operações básicas não utilizadas pelo FrontEnd foram criadas para facilitar a manipulação dos dados, como documentado no Swagger, que deve estar disponível no endereço https://localhost:7079/swagger/index.html.
 
 
 🔵 [FrontEnd] (/frontend/mrv)
@@ -49,3 +49,4 @@ ATENÇÃO: O FrontEnd só aceita ou rejeita _leads_ existentes. Para criar suas 
   npm install
   npm run dev
   ```
+A Aplicação Web deve estar rodando no endereço [https://localhost:8000/.] (http://localhost:8080/)
