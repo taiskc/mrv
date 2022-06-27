@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-card v-if="loadingLeads">
+    <b-card class="my-2" v-if="loadingLeads">
         <div class="w-100 d-flex alig-items-center justify-content-center">
           <div class="spinner-border" role="status">
             <span class="sr-only">Loading...</span>
