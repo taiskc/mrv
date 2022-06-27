@@ -24,8 +24,8 @@
       </div>
     </div>
     <div v-else>
-      <div v-for="approvedLead in approvedLeads" v-bind:key="approvedLead.id">
-        <new-lead-card :lead="approvedLead" />
+      <div v-for="acceptedLead in acceptedLeads" v-bind:key="acceptedLead.id">
+        <new-lead-card :lead="acceptedLead" />
       </div>
     </div>
   </div>
@@ -42,9 +42,9 @@ export default {
   data() {
     return {
       newLeads: [],
-      approvedLeads: [],
+      acceptedLeads: [],
       loadingNewLeads: true,
-      loadingApprovedLeads: true,
+      loadingAcceptedLeads: true,
       tabSelected: "Invited",
     };
   },
@@ -54,7 +54,7 @@ export default {
   methods: {
     getAllLeads() {
       this.getNewLeads();
-      this.getApprovedLeads();
+      this.getAcceptedLeads();
     },
     async getNewLeads() {
       fetch("https://localhost:7079/api/lead/new", { method: "GET" })
@@ -67,16 +67,16 @@ export default {
         });
       this.loadingNewLeads = false;
     },
-    async getApprovedLeads() {
-      fetch("https://localhost:7079/api/lead/approved", { method: "GET" })
+    async getAcceptedLeads() {
+      fetch("https://localhost:7079/api/lead/accepted", { method: "GET" })
         .then(async (response) => {
-          this.approvedLeads = await response.json();
+          this.acceptedLeads = await response.json();
         })
         .catch((error) => {
           this.errorMessage = error;
           console.error("There was an error!", error);
         });
-      this.loadingApprovedLeads = false;
+      this.loadingAcceptedLeads = false;
     },
     setActive(tab) {
       this.tabSelected = tab;

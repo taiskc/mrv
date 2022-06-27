@@ -18,11 +18,24 @@
       {{ lead.description }}
       <hr class="w-100" />
       <div class="d-flex flex-row align-items-center">
-        <b-button class="mr-2" variant="warning">Accept</b-button>
-        <b-button class="mr-2">Decline</b-button>
-        {{ lead.price }}
+        <div v-if="loadingEvaluation" class="spinner-border mr-2" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <b-button class="mr-2" variant="warning" @click="evaluateLead(true)" :disabled="loadingEvaluation">Accept</b-button>
+        <b-button class="mr-2" @click="evaluateLead(false)" :disabled="loadingEvaluation">Decline</b-button>
+        ${{ lead.price.toFixed(2) }}
       </div>
     </b-card>
+    <b-modal
+      ref="generalModal"
+      centered
+      hide-header
+      ok-only
+      ok-title="Ok"
+      class="theme-modal"
+    >
+      {{ modalMessage }}
+    </b-modal>
   </div>
 </template>
 
@@ -32,7 +45,11 @@ export default {
   name: "new-lead-card",
   props: ["lead"],
   data() {
-    return {};
+    return {
+        loadingEvaluation: false,
+        leadComplete: null,
+        modalMessage: '',
+    };
   },
   methods: {
     getFormattedDate(date) {
@@ -40,6 +57,34 @@ export default {
       const formattedTime = moment(date).format("LT");
       return formattedDate + " @ " + formattedTime;
     },
+    evaluateLead(evaluation) {
+        this.loadingEvaluation = true;
+        debugger;
+        const body = JSON.stringify({ "accepted": evaluation });
+        fetch("https://localhost:7079/api/lead/evaluate/" + this.lead.id + '/',
+            { method: "PUT",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: body })
+            .then(async (response) => {
+                const data = await response.json();
+                if (evaluation) {
+                    this.leadComplete = data;
+                    const middleOfMessage = evaluation ? "accepted" : "declined"
+                    this.modalMessage = "Lead " + middleOfMessage + " successfully!";
+                    this.$refs['generalModal'].show();
+                }
+            })
+            .catch((error) => {
+                const middleOfMessage = evaluation ? "accepted" : "declined"
+                this.modalMessage = "There was an error and the lead could not be " + middleOfMessage + "! Please, try again.";
+                this.$refs['generalModal'].show();
+                this.errorMessage = error;
+                console.error("There was an error!", error);
+            });
+        this.loadingEvaluation = false;
+    }
   },
 };
 </script>
