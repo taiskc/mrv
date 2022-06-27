@@ -8,6 +8,7 @@ Desafio Full Stack em .Net Core e VueJS.
 
 Para criar o Banco de Dados
 - pelo Visual Studio:
+
   Abrir o Package Manager Console (Tools -> NuGet Package Manager -> Package Manager Console)
   Executar os comandos
   ```
@@ -17,6 +18,7 @@ Para criar o Banco de Dados
 e rodar a aplicação (botão ▶).
 
 - pela linha de comando do sistema operacional:
+
   Executar os comandos
   ```
   dotnet ef migrations add "initial"
