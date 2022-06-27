@@ -49,4 +49,4 @@ Outras operações básicas não utilizadas pelo FrontEnd foram criadas para fac
   npm install
   npm run dev
   ```
-A Aplicação Web deve estar rodando no endereço [https://localhost:8000/.] (http://localhost:8080/)
+A Aplicação Web deve estar rodando no endereço http://localhost:8080/.
