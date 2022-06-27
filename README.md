@@ -13,8 +13,7 @@ Para criar o Banco de Dados
   ```
   add-migration "initial"
   update-database
-  ```
-e rodar a aplicação (botão ▶).
+  ``` e rodar a aplicação (botão ▶).
 
 - pela linha de comando do Windows:
   Executar os comandos
