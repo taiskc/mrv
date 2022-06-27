@@ -2,7 +2,7 @@
   <div>
     <b-card class="my-2">
       <div class="d-flex flex-row align-items-center">
-        <div class="avatar">{{ lead.firstName.charAt(0) }}</div>
+        <div class="avatar">{{ lead.firstName.charAt(0).toUpperCase() }}</div>
         <div class="d-flex flex-column">
           <div class="font-weight-bold">{{ lead.firstName + " " + lead.lastName }}</div>
           <div>{{ getFormattedDate(lead.createdAt) }}</div>
@@ -23,16 +23,6 @@
       <hr class="w-100" />
       {{ lead.description }}
     </b-card>
-    <b-modal
-      ref="generalModal"
-      centered
-      hide-header
-      ok-only
-      ok-title="Ok"
-      class="theme-modal"
-    >
-      {{ modalMessage }}
-    </b-modal>
   </div>
 </template>
 
@@ -42,11 +32,7 @@ export default {
   name: "new-lead-card",
   props: ["lead"],
   data() {
-    return {
-        loadingEvaluation: false,
-        leadComplete: null,
-        modalMessage: '',
-    };
+    return {};
   },
   methods: {
     getFormattedDate(date) {

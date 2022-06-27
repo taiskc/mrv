@@ -2,7 +2,7 @@
   <div>
     <b-card class="my-2">
       <div class="d-flex flex-row align-items-center">
-        <div class="avatar">{{ lead.firstName.charAt(0) }}</div>
+        <div class="avatar">{{ lead.firstName.charAt(0).toUpperCase() }}</div>
         <div class="d-flex flex-column">
           <div class="font-weight-bold">{{ lead.firstName }}</div>
           <div>{{ getFormattedDate(lead.createdAt) }}</div>
@@ -49,6 +49,7 @@
       centered
       hide-header
       ok-only
+      ok-variant="warning"
       ok-title="Ok"
       @hide="updateLeads"
       class="theme-modal"
