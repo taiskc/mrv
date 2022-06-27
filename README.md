@@ -24,7 +24,7 @@ e rodar a aplicação (botão ▶).
   dotnet run
   ```
   
-ATENÇÃO: O front-end só aceita ou rejeita leads existentes. Para criar suas leads para teste, é necessário acessar o endpoint /api/lead de método POST passando um body do tipo:
+ATENÇÃO: O front-end só aceita ou rejeita _leads_ existentes. Para criar suas _leads_ para teste, é necessário acessar o endpoint _/api/lead_ de método _POST_ passando um _body_ do tipo:
 
    ```
   {
