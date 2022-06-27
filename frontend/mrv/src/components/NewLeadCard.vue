@@ -4,7 +4,7 @@
       <div class="d-flex flex-row align-items-center">
         <div class="avatar">{{ lead.firstName.charAt(0) }}</div>
         <div class="d-flex flex-column">
-          <div>{{ lead.firstName }}</div>
+          <div class="font-weight-bold">{{ lead.firstName }}</div>
           <div>{{ getFormattedDate(lead.createdAt) }}</div>
         </div>
       </div>
@@ -41,7 +41,7 @@
           :disabled="loadingEvaluation"
           >Decline</b-button
         >
-        ${{ lead.price.toFixed(2) + " Lead Invitation" }}
+        <div class="font-weight-bold mr-1">${{ lead.price.toFixed(2)}}</div><span>Lead Invitation</span>
       </div>
     </b-card>
     <b-modal

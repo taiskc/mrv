@@ -4,7 +4,7 @@
       <div class="d-flex flex-row align-items-center">
         <div class="avatar">{{ lead.firstName.charAt(0) }}</div>
         <div class="d-flex flex-column">
-          <div>{{ lead.firstName + " " + lead.lastName }}</div>
+          <div class="font-weight-bold">{{ lead.firstName + " " + lead.lastName }}</div>
           <div>{{ getFormattedDate(lead.createdAt) }}</div>
         </div>
       </div>
@@ -13,7 +13,7 @@
         <div class="mr-4 d-flex align-items-center"><img class="icon mr-1" src="../assets/icons/map-pin.svg"/>{{ lead.suburb }}</div>
         <div class="mr-4 d-flex align-items-center"><img class="icon mr-1" src="../assets/icons/briefcase.svg"/> {{ lead.category }}</div>
         <div class="mr-4">JOB ID: {{ lead.id }}</div>
-        ${{ lead.price.toFixed(2) + " Lead Invitation" }}
+        <div class="font-weight-bold mr-1">${{ lead.price.toFixed(2)}}</div><span>Lead Invitation</span>
       </div>
       <hr class="w-100"/>
       <div class="d-flex flex-row align-items-center">
