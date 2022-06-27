@@ -16,7 +16,7 @@ Para criar o Banco de Dados
   ```
 e rodar a aplicação (botão ▶).
 
-- pela linha de comando do Windows:
+- pela linha de comando do sistema operacional:
   Executar os comandos
   ```
   dotnet ef migrations add "initial"
