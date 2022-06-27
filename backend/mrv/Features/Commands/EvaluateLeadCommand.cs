@@ -5,11 +5,11 @@ using mrv.Services.Notifications;
 
 namespace mrv.Features.Commands
 {
-    public class EvaluateLeadCommand : IRequest<int>
+    public class EvaluateLeadCommand : IRequest<Lead>
     {
         public int Id { get; set; }
         public bool Approved { get; set; }
-        public class EvaluateLeadCommandHandler : IRequestHandler<EvaluateLeadCommand, int>
+        public class EvaluateLeadCommandHandler : IRequestHandler<EvaluateLeadCommand, Lead>
         {
             private readonly ILeadRepository _context;
             private readonly IMediator _mediator;
@@ -18,7 +18,7 @@ namespace mrv.Features.Commands
                 _context = context;
                 _mediator = mediator;
             }
-            public async Task<int> Handle(EvaluateLeadCommand command, CancellationToken cancellationToken)
+            public async Task<Lead> Handle(EvaluateLeadCommand command, CancellationToken cancellationToken)
             {
                 var lead = _context.Leads.Where(a => a.Id == command.Id).FirstOrDefault();
 
@@ -44,7 +44,7 @@ namespace mrv.Features.Commands
                 {
                     LeadId = lead.Id
                 }, cancellationToken);
-                return lead.Id;
+                return lead;
             }
 
             private void ApplyDiscount(Lead lead)
