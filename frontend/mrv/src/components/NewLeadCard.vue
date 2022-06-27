@@ -25,9 +25,9 @@
       {{ lead.description }}
       <hr class="w-100" />
       <div class="d-flex flex-row align-items-center">
-        <div v-if="loadingEvaluation">
-          <b-spinner label="Loading..."></b-spinner>
-        </div>
+          <div v-if="loadingEvaluation" class="spinner-border mr-2" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
         <b-button
           class="mr-2"
           variant="warning"
@@ -101,6 +101,7 @@ export default {
           }
           const middleOfMessage = evaluation ? "accepted" : "declined";
           this.modalMessage = "Lead " + middleOfMessage + " successfully!";
+          this.loadingEvaluation = false;
           this.$refs["generalModal"].show();
         })
         .catch((error) => {
@@ -112,8 +113,8 @@ export default {
           this.$refs["generalModal"].show();
           this.errorMessage = error;
           console.error("There was an error!", error);
+          this.loadingEvaluation = false;
         });
-      this.loadingEvaluation = false;
     },
   },
 };
