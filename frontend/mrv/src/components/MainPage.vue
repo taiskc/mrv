@@ -25,7 +25,7 @@
     </div>
     <div v-else>
       <div v-for="acceptedLead in acceptedLeads" v-bind:key="acceptedLead.id">
-        <new-lead-card :lead="acceptedLead" />
+        <accepted-lead-card :lead="acceptedLead" />
       </div>
     </div>
   </div>
@@ -33,11 +33,13 @@
 
 <script>
 import NewLeadCard from "./NewLeadCard.vue";
+import AcceptedLeadCard from "./AcceptedLeadCard.vue";
 
 export default {
   name: "main-page",
   components: {
     NewLeadCard,
+    AcceptedLeadCard,
   },
   data() {
     return {

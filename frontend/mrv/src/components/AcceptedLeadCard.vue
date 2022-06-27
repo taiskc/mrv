@@ -4,7 +4,7 @@
       <div class="d-flex flex-row align-items-center">
         <div class="avatar">{{ lead.firstName.charAt(0) }}</div>
         <div class="d-flex flex-column">
-          <div>{{ lead.firstName }}</div>
+          <div>{{ lead.firstName + " " + lead.lastName }}</div>
           <div>{{ getFormattedDate(lead.createdAt) }}</div>
         </div>
       </div>
@@ -12,19 +12,16 @@
       <div class="d-flex flex-row align-items-center">
         <div class="mr-4 d-flex align-items-center"><img class="icon mr-1" src="../assets/icons/map-pin.svg"/>{{ lead.suburb }}</div>
         <div class="mr-4 d-flex align-items-center"><img class="icon mr-1" src="../assets/icons/briefcase.svg"/> {{ lead.category }}</div>
-        <div>JOB ID: {{ lead.id }}</div>
+        <div class="mr-4">JOB ID: {{ lead.id }}</div>
+        ${{ lead.price.toFixed(2) + " Lead Invitation" }}
+      </div>
+      <hr class="w-100"/>
+      <div class="d-flex flex-row align-items-center">
+        <div class="mr-4 d-flex align-items-center text-warning"><img class="icon mr-1" src="../assets/icons/phone.svg"/>{{ lead.phone }}</div>
+        <div class="mr-4 d-flex align-items-center text-warning"><img class="icon mr-1" src="../assets/icons/mail.svg"/> {{ lead.email }}</div>
       </div>
       <hr class="w-100" />
       {{ lead.description }}
-      <hr class="w-100" />
-      <div class="d-flex flex-row align-items-center">
-        <div v-if="loadingEvaluation" class="spinner-border mr-2" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-        <b-button class="mr-2" variant="warning" @click="evaluateLead(true)" :disabled="loadingEvaluation">Accept</b-button>
-        <b-button class="mr-2" @click="evaluateLead(false)" :disabled="loadingEvaluation">Decline</b-button>
-        ${{ lead.price.toFixed(2) + " Lead Invitation" }}
-      </div>
     </b-card>
     <b-modal
       ref="generalModal"
