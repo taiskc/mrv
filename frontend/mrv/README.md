@@ -1,4 +1,4 @@
-# mrv
+npm --v# mrv
 
 > A Vue.js project
 
