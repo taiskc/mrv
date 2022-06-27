@@ -22,6 +22,8 @@ builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
 builder.Services.AddScoped<ILeadRepository, LeadRepository>();
 
+builder.Services.AddCors();
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
@@ -42,6 +44,8 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "CQRS.WebApi");
     });
 }
+
+app.UseCors(option => option.AllowAnyOrigin());
 
 app.UseHttpsRedirection();
 
