@@ -45,7 +45,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseCors(option => option.AllowAnyOrigin());
+app.UseCors(option => option.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
 app.UseHttpsRedirection();
 
