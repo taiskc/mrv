@@ -56,7 +56,6 @@ export default {
     },
     evaluateLead(evaluation) {
         this.loadingEvaluation = true;
-        debugger;
         const body = JSON.stringify({ "accepted": evaluation });
         fetch("https://localhost:7079/api/lead/evaluate/" + this.lead.id + '/',
             { method: "PUT",

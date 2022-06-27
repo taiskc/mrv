@@ -32,6 +32,7 @@
       hide-header
       ok-only
       ok-title="Ok"
+      @hide="updateLeads"
       class="theme-modal"
     >
       {{ modalMessage }}
@@ -49,6 +50,7 @@ export default {
         loadingEvaluation: false,
         leadComplete: null,
         modalMessage: '',
+        evaluation: null,
     };
   },
   methods: {
@@ -57,9 +59,12 @@ export default {
       const formattedTime = moment(date).format("LT");
       return formattedDate + " @ " + formattedTime;
     },
+    updateLeads() {
+        this.$emit('updateLeads', this.evaluation, this.leadComplete);
+    },
     evaluateLead(evaluation) {
+        this.evaluation = evaluation;
         this.loadingEvaluation = true;
-        debugger;
         const body = JSON.stringify({ "accepted": evaluation });
         fetch("https://localhost:7079/api/lead/evaluate/" + this.lead.id + '/',
             { method: "PUT",
@@ -71,10 +76,12 @@ export default {
                 const data = await response.json();
                 if (evaluation) {
                     this.leadComplete = data;
-                    const middleOfMessage = evaluation ? "accepted" : "declined"
-                    this.modalMessage = "Lead " + middleOfMessage + " successfully!";
-                    this.$refs['generalModal'].show();
+                } else {
+                    this.leadComplete = this.lead;
                 }
+                const middleOfMessage = evaluation ? "accepted" : "declined"
+                this.modalMessage = "Lead " + middleOfMessage + " successfully!";
+                this.$refs['generalModal'].show();
             })
             .catch((error) => {
                 const middleOfMessage = evaluation ? "accepted" : "declined"

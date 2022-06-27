@@ -20,7 +20,7 @@
     </b-card>
     <div v-if="tabSelected == 'Invited'">
       <div v-for="newLead in newLeads" v-bind:key="newLead.id">
-        <new-lead-card :lead="newLead" />
+        <new-lead-card @updateLeads="updateLeads" :lead="newLead" />
       </div>
     </div>
     <div v-else>
@@ -83,6 +83,23 @@ export default {
     setActive(tab) {
       this.tabSelected = tab;
     },
+    updateLeads(evaluation, lead) {
+        if (evaluation) {
+            this.changeLeadToAceepted(lead);
+        } else {
+            this.removeLead(lead);
+        }
+    },
+    removeLead(lead) {
+        this.newLeads = this.newLeads.filter(newLead => newLead.id !== lead.id)
+    },
+    changeLeadToAceepted(lead) {
+        this.removeLead(lead);
+        this.acceptedLeads.push(lead);
+        this.acceptedLeads = this.acceptedLeads.sort(function(a, b) {
+            return new Date(a.createdAt) - new Date(b.createdAt);
+        });
+    }
   },
 };
 </script>
