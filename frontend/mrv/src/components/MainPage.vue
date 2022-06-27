@@ -19,27 +19,21 @@
       </div>
     </b-card>
     <div v-if="tabSelected == 'Invited'">
-      <div v-for="newLead in newLeads" v-bind:key="newLead.id">
-        <new-lead-card @updateLeads="updateLeads" :lead="newLead" />
-      </div>
+      <all-cards type="Invited" @updateLeads="updateLeads" :loadingLeads="loadingNewLeads" :errorLoadingLeads="errorLoadingNewLeads" :leads="newLeads"/>
     </div>
     <div v-else>
-      <div v-for="acceptedLead in acceptedLeads" v-bind:key="acceptedLead.id">
-        <accepted-lead-card :lead="acceptedLead" />
-      </div>
+      <all-cards type="Accepted" :loadingLeads="loadingAcceptedLeads" :errorLoadingLeads="errorLoadingAcceptedLeads" :leads="acceptedLeads"/>
     </div>
   </div>
 </template>
 
 <script>
-import NewLeadCard from "./NewLeadCard.vue";
-import AcceptedLeadCard from "./AcceptedLeadCard.vue";
+import AllCards from "./AllCards.vue";
 
 export default {
   name: "main-page",
   components: {
-    NewLeadCard,
-    AcceptedLeadCard,
+    AllCards,
   },
   data() {
     return {
@@ -47,6 +41,8 @@ export default {
       acceptedLeads: [],
       loadingNewLeads: true,
       loadingAcceptedLeads: true,
+      errorLoadingNewLeads: false,
+      errorLoadingAcceptedLeads: false,
       tabSelected: "Invited",
     };
   },
@@ -62,44 +58,48 @@ export default {
       fetch("https://localhost:7079/api/lead/new", { method: "GET" })
         .then(async (response) => {
           this.newLeads = await response.json();
+          this.loadingNewLeads = false;
         })
         .catch((error) => {
           this.errorMessage = error;
+          this.errorLoadingNewLeads = true;
           console.error("There was an error!", error);
+          this.loadingNewLeads = false;
         });
-      this.loadingNewLeads = false;
     },
     async getAcceptedLeads() {
       fetch("https://localhost:7079/api/lead/accepted", { method: "GET" })
         .then(async (response) => {
           this.acceptedLeads = await response.json();
+          this.loadingAcceptedLeads = false;
         })
         .catch((error) => {
           this.errorMessage = error;
+          this.errorLoadingAcceptedLeads = true;
           console.error("There was an error!", error);
+          this.loadingAcceptedLeads = false;
         });
-      this.loadingAcceptedLeads = false;
     },
     setActive(tab) {
       this.tabSelected = tab;
     },
     updateLeads(evaluation, lead) {
-        if (evaluation) {
-            this.changeLeadToAceepted(lead);
-        } else {
-            this.removeLead(lead);
-        }
+      if (evaluation) {
+        this.changeLeadToAceepted(lead);
+      } else {
+        this.removeLead(lead);
+      }
     },
     removeLead(lead) {
-        this.newLeads = this.newLeads.filter(newLead => newLead.id !== lead.id)
+      this.newLeads = this.newLeads.filter((newLead) => newLead.id !== lead.id);
     },
     changeLeadToAceepted(lead) {
-        this.removeLead(lead);
-        this.acceptedLeads.push(lead);
-        this.acceptedLeads = this.acceptedLeads.sort(function(a, b) {
-            return new Date(a.createdAt) - new Date(b.createdAt);
-        });
-    }
+      this.removeLead(lead);
+      this.acceptedLeads.push(lead);
+      this.acceptedLeads = this.acceptedLeads.sort(function (a, b) {
+        return new Date(a.createdAt) - new Date(b.createdAt);
+      });
+    },
   },
 };
 </script>
