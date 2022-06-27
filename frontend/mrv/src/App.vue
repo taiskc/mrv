@@ -24,8 +24,31 @@ export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      newLeads: [],
+      approvedLeads: []
     }
+  },
+  created() {
+    this.getAllLeads()
+  },
+  getAllLeads() {
+    this.getNewLeads();
+    this.getAcceptedLeads();
+  },
+  async getNewLeads() {
+        fetch("https://localhost:7079/lead/new", {method: 'GET'})
+    .then(async response => {
+      const data = await response.json();
+      if (!response.ok) {
+        this.newLeads = response;
+        debugger;
+        return Promise.reject(error);
+      }
+    })
+    .catch(error => {
+      this.errorMessage = error;
+      console.error("There was an error!", error);
+    });
   }
 }
 </script>
