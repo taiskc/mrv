@@ -38,6 +38,8 @@ ATENÇÃO: O front-end só aceita ou rejeita _leads_ existentes. Para criar suas
     "description": "string",
   }
   ```
+  
+ Outras operações básicas foram criadas para manipulação dos dados, como documentado no Swagger.
 
 
 🔵 [Front-End] (/frontend/mrv)
