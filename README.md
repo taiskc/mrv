@@ -14,7 +14,8 @@ Para criar o Banco de Dados
   add-migration "initial"
   update-database
   ```
-  e rodar a aplicação (botão ▶).
+e rodar a aplicação (botão ▶).
+
 - pela linha de comando do Windows:
   Executar os comandos
   ```
@@ -22,18 +23,8 @@ Para criar o Banco de Dados
   dotnet ef database update
   dotnet run
   ```
-
-🔵 [Front-End] (/frontend/mrv)
- 
- Executar os comandos
-   ```
-  npm install
-  npm run dev
-  ```
   
-## +
-
-O front-end só aceita ou rejeita leads existentes. Para criar suas leads para teste, é necessário acessar o endpoint /api/lead de método POST passando um body do tipo:
+ATENÇÃO: O front-end só aceita ou rejeita leads existentes. Para criar suas leads para teste, é necessário acessar o endpoint /api/lead de método POST passando um body do tipo:
 
    ```
   {
@@ -46,4 +37,13 @@ O front-end só aceita ou rejeita leads existentes. Para criar suas leads para t
     "price": 0,
     "description": "string",
   }
+  ```
+
+
+🔵 [Front-End] (/frontend/mrv)
+ 
+ Executar os comandos
+   ```
+  npm install
+  npm run dev
   ```
