@@ -14,7 +14,7 @@ namespace mrv.Features.Commands
         public string Category { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }
-        public bool? Approved { get; set; }
+        public bool? Accepted { get; set; }
         public class CreateLeadCommandHandler : IRequestHandler<CreateLeadCommand, int>
         {
             private readonly ILeadRepository _context;

@@ -8,7 +8,7 @@ namespace mrv.Features.Commands
     public class EvaluateLeadCommand : IRequest<Lead>
     {
         public int Id { get; set; }
-        public bool Approved { get; set; }
+        public bool Accepted { get; set; }
         public class EvaluateLeadCommandHandler : IRequestHandler<EvaluateLeadCommand, Lead>
         {
             private readonly ILeadRepository _context;
@@ -27,20 +27,20 @@ namespace mrv.Features.Commands
                     throw new KeyNotFoundException("Lead not found!");
                 }
 
-                if (lead.Approved is true)
+                if (lead.Accepted is true)
                 {
                     throw new Exception("Lead already accepted!");
                 }
 
-                if (command.Approved)
+                if (command.Accepted)
                 {
                     ApplyDiscount(lead);
                 }
 
-                lead.Approved = command.Approved;
+                lead.Accepted = command.Accepted;
                 
                 await _context.SaveChanges();
-                await _mediator.Publish(new LeadApprovedNotification
+                await _mediator.Publish(new LeadAcceptedNotification
                 {
                     LeadId = lead.Id
                 }, cancellationToken);

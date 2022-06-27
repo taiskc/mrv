@@ -32,7 +32,7 @@ namespace mrv.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<bool?>("Approved")
+                    b.Property<bool?>("Accepted")
                         .HasColumnType("bit");
 
                     b.Property<string>("Category")

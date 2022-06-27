@@ -25,7 +25,7 @@ namespace mrv.Migrations
                     Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Approved = table.Column<bool>(type: "bit", nullable: true)
+                    Accepted = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {

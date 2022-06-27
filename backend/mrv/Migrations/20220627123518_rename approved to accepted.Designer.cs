@@ -12,8 +12,8 @@ using mrv.Context;
 namespace mrv.Migrations
 {
     [DbContext(typeof(LeadRepository))]
-    [Migration("20220624115541_lead-3")]
-    partial class lead3
+    [Migration("20220627123518_rename approved to accepted")]
+    partial class renameapprovedtoaccepted
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

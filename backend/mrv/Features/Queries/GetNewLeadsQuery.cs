@@ -17,7 +17,7 @@ namespace mrv.Features.Queries
             public async Task<IEnumerable<Lead>> Handle(GetNewLeadsQuery query, CancellationToken cancellationToken)
             {
                 var leadList = await _context.Leads.OrderBy(lead => lead.CreatedAt).ToListAsync();
-                var newLeadList = leadList.FindAll(lead => lead.Approved is null);
+                var newLeadList = leadList.FindAll(lead => lead.Accepted is null);
                 return newLeadList.AsReadOnly();
             }
         }

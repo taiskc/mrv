@@ -32,10 +32,10 @@ namespace mrv.Controllers
         {
             return Ok(await _mediator.Send(new GetNewLeadsQuery()));
         }
-        [HttpGet("approved")]
-        public async Task<IActionResult> GetApproved()
+        [HttpGet("acceptd")]
+        public async Task<IActionResult> GetAccepted()
         {
-            return Ok(await _mediator.Send(new GetApprovedLeadsQuery()));
+            return Ok(await _mediator.Send(new GetAcceptedLeadsQuery()));
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
