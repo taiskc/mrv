@@ -32,6 +32,11 @@ namespace mrv.Features.Commands
                     throw new Exception("Lead already accepted!");
                 }
 
+                if (lead.Accepted is false)
+                {
+                    throw new Exception("Lead already declined!");
+                }
+
                 if (command.Accepted)
                 {
                     ApplyDiscount(lead);
